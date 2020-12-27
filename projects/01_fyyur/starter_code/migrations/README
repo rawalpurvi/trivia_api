@@ -1,0 +1,8 @@
+Generic single-database configuration.
+
+Fyyur Project:
+
+pip install phonenumbers
+pip install WTForms-Components
+
+from sqlalchemy import func

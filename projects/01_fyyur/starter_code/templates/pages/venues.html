@@ -1,11 +1,15 @@
 {% extends 'layouts/main.html' %}
 {% block title %}Fyyur | Venues{% endblock %}
 {% block content %}
-{% for area in areas %}
-<h3>{{ area.city }}, {{ area.state }}</h3>
+{% set city = namespace(value = '') %}
+{% set state = namespace(value = '') %}
+{% for venue in venues %}
+	{% if (city.value == venue.city) and (state.value == venue.state) %}
+	{% else %}
+		<h3>{{ venue.city }}, {{ venue.state }}</h3>
+	{% endif %}	
 	<ul class="items">
-		{% for venue in area.venues %}
-		<li>
+		<li style="display:inline-block">
 			<a href="/venues/{{ venue.id }}">
 				<i class="fas fa-music"></i>
 				<div class="item">
@@ -13,7 +17,35 @@
 				</div>
 			</a>
 		</li>
-		{% endfor %}
+		<li style="display:inline-block">
+			<a href="/venues/{{ venue.id }}/edit" >
+				<div class="item">
+					<h5>Edit</h5>
+				</div>	
+			</a>
+		</li>
+		<li style="display:inline-block">
+			<button class="delete-button" data-id="{{ venue.id }}">&cross;</button>
+		</li>
+		<br>
 	</ul>
+	{% set city.value  = venue.city %}
+	{% set state.value  = venue.state %}
 {% endfor %}
+<script>
+	const deleteBtns = document.querySelectorAll('.delete-button');
+      for (let i = 0; i < deleteBtns.length; i++) { 
+        const btn = deleteBtns[i];
+        btn.onclick = function(e) {
+			const todoId = e.target.dataset['id'];
+            fetch('/venues/'+ todoId +'/delete', {
+                method: 'DELETE'
+			})
+			.then(response => response.json())
+        	.then(jsonResponse => {
+				window.location.href = jsonResponse['url'];
+        })
+		}
+    }
+</script>
 {% endblock %}

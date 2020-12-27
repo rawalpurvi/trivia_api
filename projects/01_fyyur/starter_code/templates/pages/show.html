@@ -3,14 +3,21 @@
 {% block content %}
 
     <div class="page-header">
-        <h1>Fyyur Search!</h1>
+        <h1>Fyyur Show Search!</h1>
+        <ul class="nav nav-pills">
+            <li class="active"><a href="/shows">Shows</a></li>
+        </ul>
     </div>
-    <p class="lead"> Show Search </p>
-
+    {#    Todo implement show search frontend #}
+       
+    {#    Add implement show search frontend #}
     <ul class="nav nav-pills">
-        <li class="active"><a>Shows</a></li>
+    <h3>Number of search results for "{{ search_term }}": {{ results.count }}</h3>
+    {% for show in results.data %}
+	    <h5>{{ show.show_name }}</h5>
+	{% endfor %}
     </ul>
 
-{#    Todo implement show search frontend #}
-
 {% endblock %}
+
+

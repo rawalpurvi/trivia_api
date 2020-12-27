@@ -10,4 +10,9 @@ DEBUG = True
 
 
 # TODO IMPLEMENT DATABASE URL
-SQLALCHEMY_DATABASE_URI = '<Put your local database url>'
+
+# ADD local databse url link
+SQLALCHEMY_DATABASE_URI = 'postgresql://purvi@localhost:5432/fyyurDB'
+
+# CSRF disable to test form_validate
+WTF_CSRF_ENABLED = False
