@@ -1,6 +1,6 @@
 The Trivia of Udacity
 
-The API is to play the Trivia game. User can play a game upto 5 questions. They can play the Trivia game for any specific category or all categories and at the end they will get a score. There are 6 predifined categoies like Science, Art, Geography, History, Entertainment, Sports. User can add questions. They can add question along with answer, difficulty and category. To play the Trivia game user needs atleast 6 questions per category.  
+The API is to play the Trivia game. User can play a game upto 5 questions. They can play the Trivia game for any specific category or all categories and at the end they will get a score. There are 6 predifined categoies like Science, Art, Geography, History, Entertainment, Sports. User can add questions. They can add question along with answer, difficulty, rating and category. To play the Trivia game user needs atleast 6 questions per category.  
 
 
 Getting Started
@@ -111,20 +111,22 @@ API Preference
         "questions": [
           {
             "id": 1, 
-            "question": "What is reaponsible for the moon-s phases?"
+            "question": "What is reaponsible for the moon-s phases?",
             "answer": "The Earth-Sun-Moon system", 
             "category": "1", 
             "difficulty": 4, 
+            "rating": 2
           }, 
           :
           :
           :
           {
             "id": 10, 
-            "question": "WHAT WOULD LIFE BE WITHOUT ART?"  
+            "question": "WHAT WOULD LIFE BE WITHOUT ART?",  
             "answer": "Whatever is difficult to find in life is possible in the arts", 
             "category": "2", 
-            "difficulty": 1,  
+            "difficulty": 1, 
+            "rating": 3 
           }
         ], 
         "success": true, 
@@ -144,20 +146,22 @@ API Preference
         "questions": [
            {
             "id": 1, 
-            "question": "What is reaponsible for the moon-s phases?"
+            "question": "What is reaponsible for the moon-s phases?",
             "answer": "The Earth-Sun-Moon system", 
             "category": "1", 
             "difficulty": 4,
+            "rating": 2
           },
           :
           :
           :
           {
             "id": 11, 
-            "question": "WHAT WOULD LIFE BE WITHOUT ART?"  
+            "question": "WHAT WOULD LIFE BE WITHOUT ART?", 
             "answer": "Whatever is difficult to find in life is possible in the arts", 
             "category": "2", 
-            "difficulty": 1, 
+            "difficulty": 1,
+            "rating": 3 
           }
         ], 
         "success": true, 
@@ -172,26 +176,28 @@ API Preference
     - The added question can be shown at the end of the list
     - Return id of created question, questions, total questions
     - Pagination show 10 quetions per Page
-    - curl -X POST -H "Content-Type:application/json" -d '{"question":"What is the most used color in Art?", "answer":"Black", "category":2, "difficulty":1}' http://127.0.0.1:5000/questions
+    - curl -X POST -H "Content-Type:application/json" -d '{"question":"What is the most used color in Art?", "answer":"Black", "category":2, "difficulty":1, "rating": 4}' http://127.0.0.1:5000/questions
     {
         "created": 47, 
         "questions": [
           {
             "id": 1, 
-            "question": "What is reaponsible for the moon-s phases?"  
+            "question": "What is reaponsible for the moon-s phases?",  
             "answer": "The Earth-Sun-Moon system", 
             "category": "1", 
             "difficulty": 4,
+            "rating": 2
           }, 
           :
           :
           :
           {
             "id": 10, 
-            "question": "WHAT WOULD LIFE BE WITHOUT ART?"  
-            "answer": "Whatever is difficult to find in life \u2026is possible in the arts", 
+            "question": "WHAT WOULD LIFE BE WITHOUT ART?",  
+            "answer": "Whatever is difficult to find in life is possible in the arts", 
             "category": "2", 
-            "difficulty": 1, 
+            "difficulty": 1,
+            "rating": 3 
          }
       ], 
       "success": true, 
@@ -209,24 +215,27 @@ API Preference
     "questions": [
         {
             "id": 4, 
-            "question": "Can you see a New Moon?"  
+            "question": "Can you see a New Moon?",  
             "answer": "No", 
             "category": "1", 
             "difficulty": 1,
+            "rating": 3
         }, 
         {
             "id": 15, 
-            "question": "CAN ANYBODY BE AN ARTIST?"  
+            "question": "CAN ANYBODY BE AN ARTIST?",  
             "answer": "Yes", 
             "category": "2", 
             "difficulty": 1,
+            "rating": 1
         }, 
         {
             "id": 27, 
-            "question": "How many stars does the American Flag have?"  
+            "question": "How many stars does the American Flag have?",  
             "answer": "50", 
             "category": "4", 
-            "difficulty": 1, 
+            "difficulty": 1,
+            "rating": 4 
         }
       ], 
       "success": true, 
@@ -244,24 +253,27 @@ API Preference
       "questions": [
         {
             "id": 17, 
-            "question": "What is Earth's largest continent?"  
+            "question": "What is Earth's largest continent?",  
             "answer": "Asia", 
             "category": "3", 
             "difficulty": 3,
+            "rating": 2
         }, 
         {
             "id": 20, 
-            "question": "What is the biggest state in the US?"  
+            "question": "What is the biggest state in the US?",  
             "answer": "Alaska", 
             "category": "3", 
-            "difficulty": 2, 
+            "difficulty": 2,
+            "rating": 1 
         }, 
         {
             "id": 40, 
-            "question": " What is the driest place on Earth?"   
+            "question": " What is the driest place on Earth?",   
             "answer": "McMurdo,Antactica", 
             "category": "3", 
             "difficulty": 4,
+            "rating": 5
         }
       ], 
       "success": true, 
@@ -279,10 +291,11 @@ API Preference
     {
         "question": {
             "id": 17, 
-            "question": "What is Earth's largest continent?"
+            "question": "What is Earth's largest continent?",
             "answer": "Asia", 
             "category": "3", 
             "difficulty": 3,
+            "rating": 2
         }, 
         "success": true
     }

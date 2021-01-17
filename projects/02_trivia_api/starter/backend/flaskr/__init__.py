@@ -168,7 +168,9 @@ def create_app(test_config=None):
       new_answer = body.get("answer", None)
       new_category = body.get("category", None)
       new_difficulty = body.get("difficulty", None)
-      question = Question(question=new_question, answer=new_answer, category=new_category, difficulty=new_difficulty)
+      new_rating = body.get("rating", None)
+
+      question = Question(question=new_question, answer=new_answer, category=new_category, difficulty=new_difficulty, rating=new_rating)
       question.insert()
 
       selection = Question.query.order_by(Question.id).all()
@@ -225,7 +227,7 @@ def create_app(test_config=None):
   @app.route('/categories/<int:category_id>/questions', methods=['GET'])
   def get_specific_questions(category_id):
     
-    selection = Question.query.filter_by(category=str(category_id)).all()
+    selection = Question.query.filter_by(category=category_id).all()
 
     # If there is no question assign
     if len(selection) == 0:
@@ -269,9 +271,9 @@ def create_app(test_config=None):
     elif previous_questions and (quiz_category['id'] == 0):
       question = Question.query.filter(Question.id.notin_(previous_questions)).first()
     elif (previous_questions is None) and (quiz_category['id'] != 0):
-      question = Question.query.filter_by(category=str(quiz_category['id'])).first()
+      question = Question.query.filter_by(category=quiz_category['id']).first()
     else:  
-      question = Question.query.filter(Question.id.notin_(previous_questions), Question.category == str(quiz_category['id'])).first()
+      question = Question.query.filter(Question.id.notin_(previous_questions), Question.category == quiz_category['id']).first()
 
     if question is None:
         abort(404)

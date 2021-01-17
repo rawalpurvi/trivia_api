@@ -30,7 +30,8 @@ class TriviaTestCase(unittest.TestCase):
             'question': 'What is Earth-s largest continent?',
             'answer': 'Asia',
             'category': 3,
-            'difficulty': 4
+            'difficulty': 4,
+            'rating': 5
         }    
     
         # Create valid quiz category
@@ -79,12 +80,12 @@ class TriviaTestCase(unittest.TestCase):
     # Run test to delete Question and Error occures
 
     def test_delete_question(self):
-        res = self.client().delete('questions/32')
+        res = self.client().delete('questions/33')
         data = json.loads(res.data)
-        question = Question.query.filter(Question.id == 32).one_or_none()
+        question = Question.query.filter(Question.id == 33).one_or_none()
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertEqual(data['deleted'], 32)
+        self.assertEqual(data['deleted'], 33)
         self.assertTrue(data['total_questions'])
         self.assertTrue(len(data['questions']))
         self.assertEqual(question, None)
