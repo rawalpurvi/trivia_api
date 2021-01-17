@@ -1,6 +1,6 @@
 The Trivia of Udacity
 
-The API is to play the Trivia game. User can play a game upto 5 questions. They can play the Trivia game for any specific category or all categories and at the end they will get a score. There are 6 predifined categoies like Science, Art, Geography, History, Entertainment, Sports. User can add questions. They can add question along with answer, difficulty, rating and category. To play the Trivia game user needs atleast 6 questions per category.  
+The API is to play the Trivia game. User can play a game upto 5 questions. They can play the Trivia game for any specific category or all categories and at the end they will get a score. The API works fine with categories like Science, Art, Geography, History, Entertainment, Sports. User can add new category and question. They can add question along with answer, difficulty, rating and category. To play the Trivia game user needs atleast 6 questions per category.  
 
 
 Getting Started
@@ -89,7 +89,31 @@ API Preference
         "success": true
     } 
 
-    2. Get questions
+    2. Add Category
+
+    POST '/categories'
+    - Add new category to the database 
+    - Request Arguments: category 
+    - Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs, created category id, total categories.
+    - curl http://127.0.0.1:5000/categories
+    curl -X POST -H "Content-Type:application/json" -d '{"category":"Music"}' http://127.0.0.1:5000/categories
+    {
+      "categories": {
+        "1": "Science", 
+        "2": "Art", 
+        "3": "Geography", 
+        "4": "History", 
+        "5": "Entertainment", 
+        "6": "Sports", 
+        "7": "Math", 
+        "8": "Music"
+      }, 
+      "created": 8, 
+      "success": true, 
+      "total_categories": 8
+    }
+
+    3. Get questions
 
     GET '/questions'
     - Fetched all the questions with answer, difficulty, rating and category
@@ -133,7 +157,7 @@ API Preference
         "total_questions": 37
     }
 
-    3. Delete Question
+    4. Delete Question
 
     DELETE '/questions/<int:question_id>'
     - Delete question form database using question id
@@ -168,7 +192,7 @@ API Preference
         "total_questions": 37
     }
 
-    4. Add Question
+    5. Add Question
 
     POST '/questions'
     - Request Data: question, answer, category, difficulty, rating
@@ -204,7 +228,7 @@ API Preference
       "total_questions": 38
     }
 
-    5. Search 
+    6. Search 
 
     POST '/search'
     - Search endpoint will search from the question
@@ -242,7 +266,7 @@ API Preference
       "total_questions": 3
     }
 
-    6. Get questions for specific category
+    7. Get questions for specific category
 
     GET '/categories/<int:category_id>/questions'
     - This endpoint gets all the questions for specific category
@@ -281,7 +305,7 @@ API Preference
     }
 
 
-    7. Get question for trivia quiz
+    8. Get question for trivia quiz
 
     POST '/quizzes'
     - This endpoint gives randdom question to paly quiz

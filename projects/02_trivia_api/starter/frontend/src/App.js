@@ -8,6 +8,7 @@ import {
 // import logo from './logo.svg';
 import './stylesheets/App.css';
 import FormView from './components/FormView';
+import CategoryView from './components/CategoryView';
 import QuestionView from './components/QuestionView';
 import Header from './components/Header';
 import QuizView from './components/QuizView';
@@ -21,7 +22,8 @@ class App extends Component {
       <Router>
         <Switch>
           <Route path="/" exact component={QuestionView} />
-          <Route path="/add" component={FormView} />
+          <Route path="/add_question" component={FormView} />
+          <Route path="/add_category" component={CategoryView} />
           <Route path="/play" component={QuizView} />
           <Route component={QuestionView} />
         </Switch>

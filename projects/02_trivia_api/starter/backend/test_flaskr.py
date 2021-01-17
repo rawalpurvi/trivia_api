@@ -25,6 +25,11 @@ class TriviaTestCase(unittest.TestCase):
             # create all tables
             self.db.create_all()
 
+        # Create New Category
+        self.new_category = {
+            'category': 'Music'
+        }    
+
         # Create New Question
         self.new_question = {
             'question': 'What is Earth-s largest continent?',
@@ -59,6 +64,34 @@ class TriviaTestCase(unittest.TestCase):
     Write at least one test for each test for successful operation and for expected errors.
     """
 
+    # Run test to get Categories and Error occures
+
+    def test_get_categories(self):
+        res = self.client().get('/categories')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['categories'])
+
+    def test_404_if_category_not_found(self):
+        res = self.client().post('/categories/35')
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'resource not found')    
+
+    # Run test to add Categories 
+
+    def test_add_new_category(self):
+        res = self.client().post('/categories', json=self.new_category)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['created'])
+        self.assertTrue(len(data['categories']))       
+
     # Run test to check Paginate Questions and Error occures
 
     def test_get_paginate_questions(self):
@@ -80,12 +113,12 @@ class TriviaTestCase(unittest.TestCase):
     # Run test to delete Question and Error occures
 
     def test_delete_question(self):
-        res = self.client().delete('questions/33')
+        res = self.client().delete('questions/2')
         data = json.loads(res.data)
-        question = Question.query.filter(Question.id == 33).one_or_none()
+        question = Question.query.filter(Question.id == 2).one_or_none()
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertEqual(data['deleted'], 33)
+        self.assertEqual(data['deleted'], 2)
         self.assertTrue(data['total_questions'])
         self.assertTrue(len(data['questions']))
         self.assertEqual(question, None)
@@ -97,7 +130,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'bad request')        
 
-    # Run test to delete Question and Error occures
+    # Run test to add Question and Error occures
 
     def test_add_new_question(self):
         res = self.client().post('/questions', json=self.new_question)

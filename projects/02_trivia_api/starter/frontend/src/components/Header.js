@@ -13,7 +13,8 @@ class Header extends Component {
       <div className="App-header">
         <h1 onClick={() => {this.navTo('')}}>Udacitrivia</h1>
         <h2 onClick={() => {this.navTo('')}}>List</h2>
-        <h2 onClick={() => {this.navTo('/add')}}>Add</h2>
+        <h2 onClick={() => {this.navTo('/add_question')}}>Add Question</h2>
+        <h2 onClick={() => {this.navTo('/add_category')}}>Add Category</h2>
         <h2 onClick={() => {this.navTo('/play')}}>Play</h2>
       </div>
     );

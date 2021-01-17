@@ -62,6 +62,36 @@ def create_app(test_config=None):
       'categories': category_type
     })
 
+  '''
+  Create an endpoint to handle POST requests
+  to add new category.
+  '''
+  @app.route('/categories', methods=['POST'])
+  def add_category():
+    body = request.get_json()
+
+    try:
+      # Add new category
+      new_category = body.get("category", None)
+      
+      category = Category(type=new_category)
+      category.insert()
+
+      # Make an array to generate category name and id string
+      categories = Category.query.order_by(Category.id).all()
+      category_type = {}
+      for category in categories:
+        category_type[category.id]=category.type
+
+      return jsonify({
+            'success': True,
+            'created': category.id,
+            'categories': category_type,
+            'total_categories':len(Category.query.all())
+      })
+      
+    except:
+      abort(422)   
 
 
   '''
