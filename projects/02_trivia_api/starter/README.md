@@ -92,7 +92,7 @@ API Preference
     2. Get questions
 
     GET '/questions'
-    - Fetched all the questions with answer, difficulty and category
+    - Fetched all the questions with answer, difficulty, rating and category
     - Request Arguments: None
     - This request also works pagination to show questions like '/questons?page=1'
     - Pagination show 10 quetions per Page
@@ -171,7 +171,7 @@ API Preference
     4. Add Question
 
     POST '/questions'
-    - Request Data: question, answer, category, difficulty
+    - Request Data: question, answer, category, difficulty, rating
     - Add new question into database
     - The added question can be shown at the end of the list
     - Return id of created question, questions, total questions
