@@ -14,7 +14,7 @@ class CategoryView extends Component {
   submitQuestion = (event) => {
     event.preventDefault();
     $.ajax({
-      url: '/categories', //TODO: update request URL
+      url: '/categories', //DONE: update request URL
       type: "POST",
       dataType: 'json',
       contentType: 'application/json',

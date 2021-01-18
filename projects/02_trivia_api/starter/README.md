@@ -1,6 +1,6 @@
 The Trivia of Udacity
 
-The API is to play the Trivia game. User can play a game upto 5 questions. They can play the Trivia game for any specific category or all categories and at the end they will get a score. The API works fine with categories like Science, Art, Geography, History, Entertainment, Sports. User can add new category and question. They can add question along with answer, difficulty, rating and category. To play the Trivia game user needs atleast 6 questions per category.  
+The API is to play the Trivia game. User can play a game upto 5 questions. They can play the Trivia game for any specific category or all categories and at the end they will get a score. The API works fine with categories like Science, Art, Geography, History, Entertainment, Sports. User can add new category and question. They can add question along with answer, difficulty, rating and category. To play the Trivia game user needs atleast one question per category otherwise category will not show to play a quiz.
 
 
 Getting Started
@@ -11,7 +11,7 @@ Getting Started
 
     ## Back end     
 
-    From the backend folder run pip install requirements.txt . All required packages are included in the requirenments file. 
+    From the backend folder run pip install requirements.txt . All required packages are included in the requirenments file.
 
     To run the application run the following commands:
 

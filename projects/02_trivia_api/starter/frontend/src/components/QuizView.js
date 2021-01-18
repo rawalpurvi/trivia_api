@@ -22,7 +22,7 @@ class QuizView extends Component {
 
   componentDidMount(){
     $.ajax({
-      url: `/categories`, //TODO: update request URL
+      url: `/quiz_categories`, //DONE: update request URL
       type: "GET",
       success: (result) => {
         this.setState({ categories: result.categories })
@@ -46,9 +46,9 @@ class QuizView extends Component {
   getNextQuestion = () => {
     const previousQuestions = [...this.state.previousQuestions]
     if(this.state.currentQuestion.id) { previousQuestions.push(this.state.currentQuestion.id) }
-
+    
     $.ajax({
-      url: '/quizzes', //TODO: update request URL
+      url: '/quizzes', //DONE: update request URL
       type: "POST",
       dataType: 'json',
       contentType: 'application/json',
@@ -68,12 +68,20 @@ class QuizView extends Component {
           guess: '',
           forceEnd: result.question ? false : true
         })
-        return;
+          return;
       },
       error: (error) => {
-        alert('Unable to load question. Please try your request again')
-        return;
-      }
+        if(this.state.previousQuestions.length > 0 || this.state.currentQuestion.id > 0){
+          this.setState({
+            forceEnd: true,
+            error
+          });
+        }
+        else{
+          alert('There is no questions.')
+          return;
+        }
+      }  
     })
   }
 
@@ -144,6 +152,7 @@ class QuizView extends Component {
         <div className="quiz-question">{this.state.currentQuestion.question}</div>
         <div className={`${evaluate ? 'correct' : 'wrong'}`}>{evaluate ? "You were correct!" : "You were incorrect"}</div>
         <div className="quiz-answer">{this.state.currentQuestion.answer}</div>
+        <div className={`${evaluate ? 'correct' : 'wrong'}`}>{evaluate ? "Your score for this question is " + this.state.currentQuestion.difficulty : "Your score for this question is 0"}</div>
         <div className="next-question button" onClick={this.getNextQuestion}> Next Question </div>
       </div>
     )
