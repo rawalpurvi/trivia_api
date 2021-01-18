@@ -324,6 +324,24 @@ API Preference
         "success": true
     }
 
+    9. Get quiz categories
+
+    GET '/quiz_categories'
+    - Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category which has question
+    - Request Arguments: None
+    - Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs. 
+    - curl http://127.0.0.1:5000/quiz_categories
+    {
+        "categories": {
+            "1": "Science",
+            "2": "Art", 
+            "3": "Geography", 
+            "4": "History", 
+            "5": "Entertainment",
+        }, 
+        "success": true
+    } 
+
 Deployment N/A
 
 Author
