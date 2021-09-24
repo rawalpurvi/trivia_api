@@ -5,6 +5,6 @@ Udacity Full Stack Web Developer Nanodegree Projects. Program cover concepts lik
 * Identity and Access Management
 * Server Deployment, Containerization, and Testing.
 
-fyyur project included all conpcepts of SQL and Data Modeling for the Web. Here, you can find starter-code the following project:
+fyyur project included all conpcepts of API Development and Documentation. Here, you can find starter-code the following project:
 
-* projects/02_trivia_api/starter - API Development and Documentation
+* projects/02_trivia_api/starter
